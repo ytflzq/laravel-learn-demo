@@ -2,10 +2,10 @@
 <html>
     <head>
         <title>Laravel</title>
-        <link rel="stylesheet" type="text/css" href="{{asset('static/common.css')}}">
-        <link rel="stylesheet" type="text/css" href="{{asset('static/bootstrap/css/bootstrap.css')}}">
-        <script type="text/javascript" src="{{asset('static/jquery/jquery-1.8.2.min.js')}}"></script>
-        <script type="text/javascript" src="{{asset('static/bootstrap/js/bootstrap.min.js')}}"></script>
+        <link rel="stylesheet" type="text/css" href="<?php echo e(asset('static/common.css')); ?>">
+        <link rel="stylesheet" type="text/css" href="<?php echo e(asset('static/bootstrap/css/bootstrap.css')); ?>">
+        <script type="text/javascript" src="<?php echo e(asset('static/jquery/jquery-1.8.2.min.js')); ?>"></script>
+        <script type="text/javascript" src="<?php echo e(asset('static/bootstrap/js/bootstrap.min.js')); ?>"></script>
         <style type="text/css">
         .middle-div{
             max-width: 300px;
@@ -31,7 +31,8 @@
                     <small>欢迎使用</small>
                 </p>
                 <form action="login" method="post"> 
-                    {{ csrf_field() }}
+                    <?php echo e(csrf_field()); ?>
+
                     <div id="loginFrom" role="form" method="post">
                         <div class="form-group">
                             <input type="email" name="username" value="" class="form-control" placeholder="用户名" required="">
@@ -41,8 +42,10 @@
                         </div>
                         <button id="submit" type="submit" class="btn btn-primary block full-width">登 录</button>
                          <p class="text-muted text-center"> 
-                            {{$mes}}
+                            <?php echo e($mes); ?>
+
                         </p> 
+
                     </div>
                 </form>
             </div>

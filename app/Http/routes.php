@@ -33,4 +33,16 @@ Route::group(['middleware' => ['web']], function () {
          return view('login',compact('mes'));
     }));
     Route::post('/login', 'StudentController@login');
+    Route::get('/index',array('as'=>'index', function()
+    {
+         return view('index');
+    }));
+    Route::get('/welcome',array('as'=>'welcome', function()
+    {
+         return view('welcome');
+    }));
+    Route::get('/life/index',array('as'=>'life_index', function()
+    {
+         return view('life/index');
+    }));
 });

@@ -59,9 +59,10 @@ class StudentController extends Controller
                 ->get();
 
         if (count($users)==1) {
-            $request->session()->put('userIs',$users[0]->id);
-            return view('welcome');
+            $request->session()->put('userId',$users[0]->id);
+            return redirect()->route("index");
         }else{
+            
             $mes ="用户名或者密码错误！";
             return view('login',compact('mes'));
 
