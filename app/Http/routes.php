@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return 'Hello World ytf';
+    return view('login');
 });
 Route::get('/ytf/{id}', 'StudentController@test')->where('id','[0-9]+');
 Route::get('/ytf/query', 'StudentController@query');
