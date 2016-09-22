@@ -32,7 +32,7 @@ Route::group(['middleware' => ['web']], function () {
          $mes ="";
          return view('login',compact('mes'));
     }));
-    Route::post('/login', 'StudentController@login');
+    Route::post('/login', 'UserController@login');
     Route::get('/index',array('as'=>'index', function()
     {
          return view('index');

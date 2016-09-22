@@ -10,7 +10,31 @@
         </style>
     </head>
     <body>
-        是是是
+        <div class="row  border-bottom white-bg dashboard-header">
+        <div class="col-sm-12">
+                <table class="table table-striped table-bordered table-hover table-condensed">
+                    <caption>省会城市介绍</caption>
+                     <thead>
+                        <tr>
+                           <th>省名</th>
+                           <th>省会城市</th>
+                        </tr>
+                     </thead>
+
+                     <tbody>
+                     <?php if(isset($results)): ?>
+                            <?php foreach($results as $value): ?>
+                               <tr>
+                                   <td>四川省</td>
+                                   <td>成都</td>
+                                </tr>
+                            <?php endforeach; ?>
+                    <?php endif; ?>
+                     </tbody>
+                  </table>
+        </div>
+
+    </div>
     </body> 
 </html>
     
