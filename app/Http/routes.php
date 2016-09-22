@@ -41,8 +41,6 @@ Route::group(['middleware' => ['web']], function () {
     {
          return view('welcome');
     }));
-    Route::get('/life/index',array('as'=>'life_index', function()
-    {
-         return view('life/index');
-    }));
+    Route::get('/life/index','LifeMoneyController@item')->name('life_index');
+    Route::get('/life/{id}','LifeMoneyController@delete')->where('id','[0-9]+')->name('life_delete');
 });
