@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Symfony\Component\HttpFoundation\Session\Session;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 class StudentController extends Controller
 {
@@ -46,5 +49,22 @@ class StudentController extends Controller
         //删除
         //DB::table("student")->where('id',3)->delete();
         return "test";
+    }
+    public function login(Request $request)
+    {
+        $username = $request->input('username');
+        $password = $request->input('password');
+        $users = DB::table('ytf_user')
+                ->where('username', '=', $username)->where('password', '=', $password)
+                ->get();
+
+        if (count($users)==1) {
+            $request->session()->put('userIs',$users[0]->id);
+            return view('welcome');
+        }else{
+            $mes ="用户名或者密码错误！";
+            return view('login',compact('mes'));
+
+        }
     }
 }
