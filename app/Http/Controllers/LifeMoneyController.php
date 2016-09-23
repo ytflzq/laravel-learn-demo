@@ -13,12 +13,13 @@ class LifeMoneyController extends Controller
      public function item()
     {
         //查询
-        $lifeMoneys = LifeMoney::paginate(20);
+        $lifeMoneys = LifeMoney::paginate(10);
         return view('life.index',['lifeMoneys'=>$lifeMoneys]);
 
     }
     public function delete($id)
     {
-    	# code...
+        LifeMoney::destroy($id);
+    	return '1';
     }
 }

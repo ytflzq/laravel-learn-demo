@@ -12,7 +12,6 @@
             margin: 0 auto;
             padding-top: 50px;
             z-index: 100px;
-            border-left-color: red;
         }
         .full-width{
             width: 100%;

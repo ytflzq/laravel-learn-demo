@@ -13,58 +13,122 @@
             padding-top: 10px;
             z-index: 100px;
         }
-        .btn{
+        td > .btn{
             padding: 0;
+        }
+        .width100{
+          width: 100px;
+        }
+        .width200{
+          width: 200px;
+        }
+        .width300{
+          width: 300px;
+        }
+        .width400{
+          width: 400px;
+        }.width500{
+          width: 500px;
+        }.width600{
+          width: 600px;
         }
         </style>
     </head>
-    <body style="width: 95%">
-        <div class="row  border-bottom white-bg dashboard-header">
-        <div class="col-sm-12">
-                <table class="table table-striped table-bordered table-hover table-condensed">
-                    <caption>生活开支列表</caption>
-                     <thead>
-                        <tr>
-                           <th>id</th>
-                           <th>描述</th>
-                           <th>费用</th>
-                           <th>类型</th>
-                           <th>创建时间</th>
-                           <th>创建人</th>
-                           <th>操作</th>
-                        </tr>
-                     </thead>
+    <body style="width: 96%">
+        <div class="box">
+          <div class="col-sm-12">
+                  <table class="table table-striped table-bordered table-hover table-condensed">
+                      <caption>生活开支列表</caption>
+                       <thead>
+                          <tr>
+                             <th>id</th>
+                             <th>描述</th>
+                             <th>费用</th>
+                             <th>类型</th>
+                             <th>消费时间</th>
+                             <th>创建人</th>
+                             <th>操作</th>
+                          </tr>
+                       </thead>
 
-                     <tbody>
-                     @if(isset($lifeMoneys))
-                            @foreach ($lifeMoneys as $lifeMoney)
-                               <tr>
-                                   <td>{{$lifeMoney->id}}</td>
-                                   <td>{{$lifeMoney->name}}</td>
-                                   <td>{{$lifeMoney->money}}</td>
-                                   <td>{{$lifeMoney->type}}</td>
-                                   <td>{{$lifeMoney->createDate}}</td>
-                                   <td>{{$lifeMoney->userId}}</td>
-                                   <td>
-                                        <button type="button" class="btn btn-link">编辑</button>
-                                        <button type="button" onclick="del({{$lifeMoney->id}});" class="btn btn-link">删除</button>
-                                    </td>
-                                </tr>
-                            @endforeach
-                    @endif
-                     </tbody>
-                  </table>
+                       <tbody>
+                       @if(isset($lifeMoneys))
+                              @foreach ($lifeMoneys as $lifeMoney)
+                                 <tr>
+                                     <td>{{$lifeMoney->id}}</td>
+                                     <td>{{$lifeMoney->name}}</td>
+                                     <td>{{$lifeMoney->money}}</td>
+                                     <td>{{$lifeMoney->type}}</td>
+                                     <td>{{$lifeMoney->createDate}}</td>
+                                     <td>{{$lifeMoney->userId}}</td>
+                                     <td>
+                                          <button type="button" class="btn btn-link">编辑</button>
+                                          <button type="button" onclick="del({{$lifeMoney->id}});" class="btn btn-link">删除</button>
+                                      </td>
+                                  </tr>
+                              @endforeach
+                      @endif
+                       </tbody>
+                    </table>
+          </div>
         </div>
-        <div class="middle-div">
-            {{$lifeMoneys->render()}}
+        <div class="row">
+            <div class="middle-div">
+                {{$lifeMoneys->render()}}
+            </div>
         </div>
+        <div class="row">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">描述:</label>
+                <div class="col-sm-4">
+                  <input name="name" class="form-control width300" type="text" required value="">
+                </div>
+                <label class="col-sm-2 control-label">费用:</label>
+                <div class="col-sm-4">
+                  <input name="money" class="form-control width300"  type="number" max="10000.01" min="0.00" step="5" required value="">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">类型</label>
+                <div class="col-sm-4">
+                  <select name="type" required class="form-control width300">
+                    <option value="菜">菜</option>
+                    <option value="肉">肉</option>
+                    <option value="米">米</option>
+                    <option value="水电气费">水电气费</option>
+                    <option value="其他">其他</option>
+                  </select>
+                </div>
+                <label class="col-sm-2 control-label">消费时间:</label>
+                <div class="col-sm-4">
+                  <input name="money" class="form-control layer-date width300"  type="date" >
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label"></label>
+                <div class="col-sm-4">
+                  <button id="submit" type="submit" class="btn btn-primary width100">登 录</button>
+                </div>
+              </div>
+            </form>
 
-    </div>
+        </div>
     <script type="text/javascript">
         function del(id) {
-          $.post("");  
+          if(confirm("你确定要删除当前选择项么")){
+            $.post("/laravel/public/life/delete/"+id,function (result) {
+                if (result==1) {
+                  if ($(".middle-div").find(".active").find("span").length=0) {
+                    window.location = "/laravel/public/life/index";
+                  }else{
+                    window.location = "/laravel/public/life/index?page="+$(".middle-div").find(".active").find("span").text();
+                  }
+                   
+                }
+            });  
+          }
         }
     </script>
     </body> 
 </html>
-    
