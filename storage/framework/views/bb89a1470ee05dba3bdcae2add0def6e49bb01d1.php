@@ -59,7 +59,7 @@
                                      <td><?php echo e($lifeMoney->name); ?></td>
                                      <td><?php echo e($lifeMoney->money); ?></td>
                                      <td><?php echo e($lifeMoney->type); ?></td>
-                                     <td><?php echo e($lifeMoney->createDate); ?></td>
+                                     <td><?php echo e($lifeMoney->created_at); ?></td>
                                      <td><?php echo e($lifeMoney->userId); ?></td>
                                      <td>
                                           <button type="button" class="btn btn-link">编辑</button>
@@ -79,7 +79,7 @@
             </div>
         </div>
         <div class="row">
-            <form class="form-horizontal" role="form">
+            <form class="form-horizontal" action="/laravel/public/life/add" method="post" role="form">
               <div class="form-group">
                 <label class="col-sm-2 control-label">描述:</label>
                 <div class="col-sm-4">
@@ -87,7 +87,7 @@
                 </div>
                 <label class="col-sm-2 control-label">费用:</label>
                 <div class="col-sm-4">
-                  <input name="money" class="form-control width300"  type="number" max="10000.01" min="0.00" step="5" required value="">
+                  <input name="money" class="form-control width300"  type="number" max="10000.01" min="0.00" step="0.01" required value="">
                 </div>
               </div>
               <div class="form-group">
@@ -101,10 +101,7 @@
                     <option value="其他">其他</option>
                   </select>
                 </div>
-                <label class="col-sm-2 control-label">消费时间:</label>
-                <div class="col-sm-4">
-                  <input name="money" class="form-control layer-date width300"  type="date" >
-                </div>
+               
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label"></label>

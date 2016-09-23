@@ -22,4 +22,15 @@ class LifeMoneyController extends Controller
         LifeMoney::destroy($id);
     	return '1';
     }
+    public function add(Request $request)
+    {
+        $username = $request->input('username');
+        $password = $request->input('password');
+        $lifeMoney =  new LifeMoney;
+        $lifeMoney->name = $request->input('name');
+        $lifeMoney->money  = $request->input('money');
+        $lifeMoney->type = $request->input('type');
+        $lifeMoney->save();
+        return redirect()->route('life_index');
+    }
 }

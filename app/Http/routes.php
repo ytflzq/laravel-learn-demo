@@ -43,4 +43,5 @@ Route::group(['middleware' => ['web']], function () {
     }));
     Route::get('/life/index','LifeMoneyController@item')->name('life_index');
     Route::post('/life/delete/{id}','LifeMoneyController@delete')->where('id','[0-9]+')->name('life_delete');
+    Route::post('/life/add','LifeMoneyController@add')->name('life_add');
 });
