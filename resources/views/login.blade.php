@@ -10,15 +10,25 @@
         .middle-div{
             max-width: 300px;
             margin: 0 auto;
-            padding-top: 50px;
+            padding-top: 200px;
             z-index: 100px;
         }
         .full-width{
             width: 100%;
         }
+        body{
+            background-image: url("{{asset('static/images/background-login.jpg')}}");
+            background-size: 100%;
+            width: 100%;
+            height: 100%;
+        }
+        span{
+            font-size: 24px;
+            color: #343434;
+        }
         </style>
     </head>
-    <body>
+    <body class="body">
         <div class="middle-div">
             <div>
                 <div>
@@ -27,7 +37,7 @@
 
                 </div>
                 <p class="text-muted text-center">
-                    <small>欢迎使用</small>
+                    <span>欢迎使用XX系统</span>
                 </p>
                 <form action="login" method="post"> 
                     {{ csrf_field() }}
