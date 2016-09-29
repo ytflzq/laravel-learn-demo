@@ -26,4 +26,17 @@ class UserController extends Controller
 
         }
     }
+    public function hasUserIdSession(Request $request)
+    {
+        if($request->session()->has('userId')){
+            return 1;
+        }else{
+            return 2;
+        }
+
+    }
+    public function safeExit(Request $request){
+        $request->session()->forget('userId');
+        return view('login');
+    }
 }

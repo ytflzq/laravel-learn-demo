@@ -33,6 +33,7 @@ Route::group(['middleware' => ['web']], function () {
          return view('login',compact('mes'));
     }));
     Route::post('/login', 'UserController@login');
+    Route::get('/hasUserIdSession',"UserController@hasUserIdSession");
     Route::get('/index',array('as'=>'index', function()
     {
          return view('index');

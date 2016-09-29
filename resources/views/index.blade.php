@@ -447,6 +447,11 @@
     <script src="{{asset('static/index/js/hplus.min.js?v=4.0.0')}}"></script>
     <script type="text/javascript" src="{{asset('static/index/js/contabs.min.js')}}"></script>
     <script src="{{asset('static/index/js/plugins/pace/pace.min.js')}}"></script>
+    <script type="text/javascript">
+        function safeExit(){
+            
+        }
+    </script>
 </body>
 
 </html>

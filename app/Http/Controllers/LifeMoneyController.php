@@ -30,6 +30,7 @@ class LifeMoneyController extends Controller
         $lifeMoney->name = $request->input('name');
         $lifeMoney->money  = $request->input('money');
         $lifeMoney->type = $request->input('type');
+        $lifeMoney->userId = $request->session()->get('userId');
         $lifeMoney->save();
         return redirect()->route('life_index');
     }

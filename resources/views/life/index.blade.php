@@ -5,7 +5,11 @@
         <link rel="stylesheet" type="text/css" href="{{asset('static/common.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('static/bootstrap/css/bootstrap.css')}}">
         <script type="text/javascript" src="{{asset('static/jquery/jquery-1.8.2.min.js')}}"></script>
+        <script type="text/javascript">
+          
+        </script>
         <script type="text/javascript" src="{{asset('static/bootstrap/js/bootstrap.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('static/hasUserIdSession.js')}}"></script>
         <style type="text/css">
         .middle-div{
             max-width: 300px;
@@ -105,11 +109,10 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label"></label>
                 <div class="col-sm-4">
-                  <button id="submit" type="submit" class="btn btn-primary width100">登 录</button>
+                  <button id="submit" type="submit" class="btn btn-primary width100">确定</button>
                 </div>
               </div>
             </form>
-
         </div>
     <script type="text/javascript">
         function del(id) {
@@ -126,6 +129,7 @@
             });  
           }
         }
+
     </script>
     </body> 
 </html>
