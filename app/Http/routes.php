@@ -11,21 +11,9 @@
 |
 */
 
-
 Route::get('/ytf/{id}', 'StudentController@test')->where('id','[0-9]+');
 Route::get('/ytf/query', 'StudentController@query');
 Route::get('/ytf/query2', 'StudentController@query2');
-
-/*
-|---  -----------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
-| kernel and includes session state, CSRF protection, and more.
-|
-*/
 
 Route::group(['middleware' => ['web']], function () {
     Route::get('/',array('as'=>'login', function () {
@@ -42,7 +30,12 @@ Route::group(['middleware' => ['web']], function () {
     {
          return view('welcome');
     }));
+    Route::get('/lineMap',array('as'=>'lineMap', function()
+    {
+         return view('map.lineMap');
+    }));
     Route::get('/life/index','LifeMoneyController@item')->name('life_index');
+    Route::get('/life/mapData','LifeMoneyController@mapData')->name('life_mapData');
     Route::post('/life/delete/{id}','LifeMoneyController@delete')->where('id','[0-9]+')->name('life_delete');
     Route::post('/life/add','LifeMoneyController@add')->name('life_add');
 });

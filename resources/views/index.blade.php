@@ -21,6 +21,7 @@
     <link href="{{asset('static/index/css/style.min.css?v=4.0.0')}}" rel="stylesheet">
 </head>
 
+
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
     <div id="wrapper">
         <!--左侧导航开始-->
@@ -44,7 +45,7 @@
                                 <li><a class="J_menuItem" href="profile.html">个人资料</a>
                                 </li>
                                 <li class="divider"></li>
-                                <li><a onclick="safeExit()"  href="JavaScript:void();">安全退出</a>
+                                <li><a onclick="safeExit()"  href="JavaScript:void(0);">安全退出</a>
                                 </li>
                             </ul>
                         </div>
@@ -61,7 +62,11 @@
                             <li>
                                 <a class="J_menuItem" href="{{URL::route('life_index')}}" data-index="1">生活开支</a>
                             </li>
+
                             <li>
+                                <a class="J_menuItem" href="{{url('lineMap')}}" data-index="3">生活开支统计</a>
+                            </li>
+                             <li>
                                 <a class="J_menuItem" href="{{url('welcome')}}" data-index="2">首页1</a>
                             </li>
                         </ul>
