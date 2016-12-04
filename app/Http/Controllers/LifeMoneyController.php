@@ -34,9 +34,9 @@ class LifeMoneyController extends Controller
         $lifeMoney->save();
         return redirect()->route('life_index');
     }
-    function mapData(){
-        $results = DB::select('select sum(money) sum,month(created_at) month from lifemoney GROUP BY month(created_at)');
-        
+    function mapData(Request $request){
+        $year = $request->input('year');
+        $results = DB::select("select sum(money) sum,month(created_at) month from lifemoney where year(created_at)=? GROUP BY month(created_at)",[$year]);
         $dataMonth=array("1","2","3","4","5","6","7","8","9","10","11","12");
         $outdata =array();
         foreach ($dataMonth as $value) {
@@ -52,6 +52,6 @@ class LifeMoneyController extends Controller
             }
 
         }
-        return response()->json(['outdata'=>$outdata,]);
+        return response()->json(['outdata'=>$outdata,'year'=>$year]);
     }
 }
