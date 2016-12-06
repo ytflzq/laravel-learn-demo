@@ -4,7 +4,7 @@
         <title>Laravel</title>
         <link rel="stylesheet" type="text/css" href="{{asset('static/common.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('static/bootstrap/css/bootstrap.css')}}">
-        <script type="text/javascript" src="{{asset('static/jquery/jquery-1.8.2.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('static/index/js/jquery.min.js')}}"></script>
         <script type="text/javascript">
           
         </script>
@@ -38,9 +38,23 @@
         }
         </style>
     </head>
-    <body style="width: 96%">
+    <body style="width: 100%">
         <div class="box">
           <div class="col-sm-12">
+              <div class="btn-group hidden-xs" id="exampleTableEventsToolbar" role="group">
+                <button data-toggle="modal" data-target="#myModal" type="button" class="btn btn-outline btn-default">
+                    <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+                </button>
+               <!--  <button type="button" class="btn btn-outline btn-default">
+                    <i class="glyphicon glyphicon-heart" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="btn btn-outline btn-default">
+                    <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
+                </button> -->
+            </div>
+          </div>
+          <div class="col-sm-12">
+          
                   <table class="table table-striped table-bordered table-hover table-condensed">
                       <caption>生活开支列表</caption>
                        <thead>
@@ -81,13 +95,23 @@
                 {{$lifeMoneys->render()}}
             </div>
         </div>
-        <div class="row">
-            <form class="form-horizontal" action="/laravel/public/life/add" method="post" role="form">
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4>
+            </div>
+            <div class="modal-body">
+              
+              <form class="form-horizontal" action="/laravel/public/life/add" method="post" role="form">
               <div class="form-group">
                 <label class="col-sm-2 control-label">描述:</label>
                 <div class="col-sm-4">
                   <input name="name" class="form-control width300" type="text" required value="">
                 </div>
+              </div>
+              <div class="form-group">
                 <label class="col-sm-2 control-label">费用:</label>
                 <div class="col-sm-4">
                   <input name="money" class="form-control width300"  type="number" max="10000.01" min="0.00" step="0.01" required value="">
@@ -113,7 +137,15 @@
                 </div>
               </div>
             </form>
-        </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">提交更改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
     <script type="text/javascript">
         function del(id) {
           if(confirm("你确定要删除当前选择项么")){
