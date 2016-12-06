@@ -13,7 +13,7 @@ class LifeMoneyController extends Controller
      public function item()
     {
         //查询
-        $lifeMoneys = LifeMoney::paginate(10);
+        $lifeMoneys = LifeMoney::paginate(2);
         return view('life.index',['lifeMoneys'=>$lifeMoneys]);
 
     }
@@ -24,15 +24,31 @@ class LifeMoneyController extends Controller
     }
     public function add(Request $request)
     {
-        $username = $request->input('username');
-        $password = $request->input('password');
         $lifeMoney =  new LifeMoney;
         $lifeMoney->name = $request->input('name');
         $lifeMoney->money  = $request->input('money');
         $lifeMoney->type = $request->input('type');
         $lifeMoney->userId = $request->session()->get('userId');
         $lifeMoney->save();
+        // echo "<script type='text/javascript'>alert('你没有权限修改该条目');</script>";
         return redirect()->route('life_index');
+        
+    }
+    public function update(Request $request)
+    {
+        $id = $request->input('id');
+        $lifeMoney = LifeMoney::find($id);
+        if ($lifeMoney->userId==$id) {
+            $name = $request->input('name');
+            $money  = $request->input('money');
+            $type = $request->input('type');
+            DB::update('update lifeMoney set name = ?,money=?,type=? where id = ?', [$name,$money,$type,$id]);
+            return redirect()->route('life_index');
+        }else{
+            echo "<script type='text/javascript'>alert('你没有权限修改该条目');</script>";
+        }
+        
+        
     }
     function mapData(Request $request){
         $year = $request->input('year');
