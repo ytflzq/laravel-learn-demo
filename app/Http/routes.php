@@ -34,6 +34,10 @@ Route::group(['middleware' => ['web']], function () {
     {
          return view('map.lineMap');
     }));
+    Route::get('/geo',array('as'=>'geo', function()
+    {
+         return view('map.geo');
+    }));
     Route::get('/life/index','LifeMoneyController@item')->name('life_index');
     Route::get('/life/mapData','LifeMoneyController@mapData')->name('life_mapData');
     Route::post('/life/delete/{id}','LifeMoneyController@delete')->where('id','[0-9]+')->name('life_delete');

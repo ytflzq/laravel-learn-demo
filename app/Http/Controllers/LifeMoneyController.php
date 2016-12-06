@@ -32,7 +32,7 @@ class LifeMoneyController extends Controller
         $lifeMoney->save();
         // echo "<script type='text/javascript'>alert('你没有权限修改该条目');</script>";
         return redirect()->route('life_index');
-        
+
     }
     public function update(Request $request)
     {
@@ -70,5 +70,53 @@ class LifeMoneyController extends Controller
             }
         }
         return response()->json(['outdata'=>$outdata,'year'=>$year,'yearData'=>$yearData]);
+    }
+    //获取lifemoney的统计数据api 
+    //返回：每月的支出，总支出
+    //参数：year
+    function getLifemoneyStatisticsAPI(Request $request){
+        $year = $request->input('year');
+        $data = [];
+        try {
+            $yearData = DB::select("select sum(money) sum from lifeMoney where year(created_at)=?",[$year]);
+
+            $monthData = DB::select("select sum(money) sum,month(created_at) month from lifemoney where year(created_at)=? GROUP BY month(created_at)",[$year]);
+            $dataMonth=array("1","2","3","4","5","6","7","8","9","10","11","12");
+            $outdata =array();
+            foreach ($dataMonth as $value) {
+                $isHas = False;
+                foreach ($monthData as $result) {
+                    if ($value==$result->month) {
+                        $outdata[]=$result->sum;
+                        $isHas = True;
+                    }
+                }
+                if (!$isHas) {
+                    $outdata[]=0;
+                }
+            }
+            $data['outdata'] = $outdata;
+            $data['yearData'] = $yearData;
+            return response()->json(['message'=>'success','data'=>$data]);
+        } catch (Exception $e) {
+            return response()->json(['message'=>'fail','data'=>$data]);
+        }
+    }
+    //
+    public function addLifemoneyAPI(Request $request)
+    {
+        try {
+            $lifeMoney =  new LifeMoney;
+            $lifeMoney->name = $request->input('name');
+            $lifeMoney->money  = $request->input('money');
+            $lifeMoney->type = $request->input('type');
+            $lifeMoney->userId = $request->session()->get('userId');
+            $lifeMoney->save();
+            return response()->json(['message'=>'success']);
+        } catch (Exception $e) {
+            return response()->json(['message'=>'fail']);
+        }
+        
+
     }
 }

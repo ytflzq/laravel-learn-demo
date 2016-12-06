@@ -66,6 +66,9 @@
                             <li>
                                 <a class="J_menuItem" href="{{url('lineMap')}}" data-index="3">生活开支统计</a>
                             </li>
+                            <li>
+                                <a class="J_menuItem" href="{{url('geo')}}" data-index="4">迁徙图</a>
+                            </li>
                              <li>
                                 <a class="J_menuItem" href="{{url('welcome')}}" data-index="2">首页1</a>
                             </li>
