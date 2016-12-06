@@ -36,12 +36,14 @@ class LifeMoneyController extends Controller
     }
     function mapData(Request $request){
         $year = $request->input('year');
-        $results = DB::select("select sum(money) sum,month(created_at) month from lifemoney where year(created_at)=? GROUP BY month(created_at)",[$year]);
+        $yearData = DB::select("select sum(money) sum from lifeMoney where year(created_at)=?",[$year]);
+
+        $monthData = DB::select("select sum(money) sum,month(created_at) month from lifemoney where year(created_at)=? GROUP BY month(created_at)",[$year]);
         $dataMonth=array("1","2","3","4","5","6","7","8","9","10","11","12");
         $outdata =array();
         foreach ($dataMonth as $value) {
             $isHas = False;
-            foreach ($results as $result) {
+            foreach ($monthData as $result) {
                 if ($value==$result->month) {
                     $outdata[]=$result->sum;
                     $isHas = True;
@@ -50,8 +52,7 @@ class LifeMoneyController extends Controller
             if (!$isHas) {
                 $outdata[]=0;
             }
-
         }
-        return response()->json(['outdata'=>$outdata,'year'=>$year]);
+        return response()->json(['outdata'=>$outdata,'year'=>$year,'yearData'=>$yearData]);
     }
 }
