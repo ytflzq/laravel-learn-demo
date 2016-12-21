@@ -70,6 +70,15 @@
                                 <a class="J_menuItem" href="{{url('geo')}}" data-index="4">迁徙图</a>
                             </li>
                              <li>
+                                <a class="J_menuItem" href="{{url('radar')}}" data-index="5">雷达图</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="{{url('pathlines')}}" data-index="6">pathlines</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="{{url('vue')}}" data-index="7">vue</a>
+                            </li>
+                             <li>
                                 <a class="J_menuItem" href="{{url('welcome')}}" data-index="2">首页1</a>
                             </li>
                         </ul>

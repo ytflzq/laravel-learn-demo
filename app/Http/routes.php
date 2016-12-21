@@ -38,6 +38,18 @@ Route::group(['middleware' => ['web']], function () {
     {
          return view('map.geo');
     }));
+    Route::get('/vue',array('as'=>'vue', function()
+    {
+         return view('vue');
+    }));
+    Route::get('/radar',array('as'=>'radar', function()
+    {
+         return view('map.radar');
+    }));
+    Route::get('/pathlines',array('as'=>'pathlines', function()
+    {
+         return view('map.pathlines');
+    }));
     Route::get('/life/index','LifeMoneyController@item')->name('life_index');
     Route::get('/life/mapData','LifeMoneyController@mapData')->name('life_mapData');
     Route::post('/life/delete/{id}','LifeMoneyController@delete')->where('id','[0-9]+')->name('life_delete');

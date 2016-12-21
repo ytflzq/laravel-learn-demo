@@ -1,45 +1,33 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Laravel</title>
+    <!DOCTYPE HTML>  
+    <html>  
+      <head>  
+        <link href="css/bootstrap-combined.min.css" rel="stylesheet">  
+        <link rel="stylesheet" type="text/css" href="{{asset('static/common.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('static/bootstrap/css/bootstrap.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('static/bootstrap/css/bootstrap-datetimepicker.min.css')}}">
+        <script type="text/javascript" src="{{asset('static/index/js/jquery.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('static/bootstrap/js/bootstrap.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('static/bootstrap/js/bootstrap-datetimepicker.js')}}"></script>
+      </head>  
+      <body>  
+        <div id="datetimepicker" class="input-append date">  
+          <input type="text" name="time" id="time"></input>  
+          <span class="add-on">  
+            <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>  
+          </span>  
+        </div>  
 
-        
-
-        <style>
-            html, body {
-                height: 100%;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 96px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Laravel 5</div>
-            </div>
+        <div class="input-append date form_datetime">
+            <input size="16" type="text" value="" readonly>
+            <span class="add-on"><i class="icon-th"></i></span>
         </div>
-    </body>
-</html>
+        <script type="text/javascript">  
+          $('#datetimepicker').datetimepicker({  
+            format: 'MM/dd/yyyy hh:mm:ss'
+          });  
+              $(".form_datetime").datetimepicker({
+        format: "dd MM yyyy - hh:ii"
+    });
+        </script>  
+      </body>  
+    <html>  
